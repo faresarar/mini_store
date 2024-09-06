@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:mini_store/manager/theme_manager.dart';
 import 'screens/home_screen.dart';
 
 void main() {
@@ -8,7 +8,8 @@ void main() {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
     runApp(const MiniStore());
-  });}
+  });
+}
 
 class MiniStore extends StatelessWidget {
   const MiniStore({super.key});
@@ -16,10 +17,8 @@ class MiniStore extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Mini Store',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeManager.themeData(),
       home: const HomeScreen(),
     );
   }
