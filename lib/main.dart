@@ -18,7 +18,7 @@ class MiniStore extends StatelessWidget {
     return MaterialApp(
       title: 'Mini Store',
       debugShowCheckedModeBanner: false,
-      theme: ThemeManager.themeData(),
+      theme: ThemeManager.themeData(context: context),
       home: const HomeScreen(),
     );
   }

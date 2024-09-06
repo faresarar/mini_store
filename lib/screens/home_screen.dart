@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
 import '../widgets/custom_icon.dart';
+import '../widgets/sale_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -58,10 +59,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       keyboardType: TextInputType.text,
                       decoration: const InputDecoration(
                         hintText: "Search",
-                        suffixIcon: Icon(IconlyLight.search)
+                        suffixIcon: Icon(IconlyLight.search),
                       ),
-                      
                     ),
+                    const SaleWidget(),
                   ],
                 ),
               )
