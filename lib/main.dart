@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'screens/home_screen.dart';
 
 void main() {
-  runApp(const MiniStore());
-}
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(const MiniStore());
+  });}
 
 class MiniStore extends StatelessWidget {
   const MiniStore({super.key});
