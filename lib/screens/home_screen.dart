@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../widgets/custom_icon.dart';
 import '../widgets/product_widget.dart';
 import '../widgets/sale_widget.dart';
+import 'products_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -86,11 +88,33 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                           ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                const Text("Latest Product"),
+                                const Spacer(),
+                                CustomIcon(
+                                  function: () {
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        child: const ProductsScreen(),
+                                        type: PageTransitionType.fade,
+                                      ),
+                                    );
+                                  },
+                                  icon: IconlyBold.arrowRight2,
+                                )
+                              ],
+                            ),
+                          ),
                           GridView.builder(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             itemCount: 3,
-                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
                               mainAxisSpacing: 0,
                               childAspectRatio: 0.6,
@@ -99,8 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             itemBuilder: (BuildContext context, int index) {
                               return const ProductWidget();
                             },
-                          )
-                    
+                          ),
                         ],
                       ),
                     ),
