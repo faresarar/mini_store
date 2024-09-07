@@ -1,8 +1,10 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../constants/global_colors.dart';
+import '../screens/product_details_screen.dart';
 
 class ProductWidget extends StatelessWidget {
   const ProductWidget({super.key});
@@ -17,7 +19,15 @@ class ProductWidget extends StatelessWidget {
         color: Theme.of(context).cardColor,
         child: InkWell(
           borderRadius: BorderRadius.circular(8.0),
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              PageTransition(
+                child: const ProductDetailsScreen(),
+                type: PageTransitionType.fade,
+              ),
+            );
+          },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
