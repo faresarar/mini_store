@@ -4,8 +4,9 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../widgets/custom_icon.dart';
-import '../widgets/product_widget.dart';
+import '../widgets/products_grid.dart';
 import '../widgets/sale_widget.dart';
+import 'categories_screen.dart';
 import 'products_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -40,7 +41,15 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           title: const Text("Home"),
           leading: CustomIcon(
-            function: () {},
+            function: () {
+              Navigator.push(
+                context,
+                PageTransition(
+                  child: const CategoriesScreen(),
+                  type: PageTransitionType.fade,
+                ),
+              );
+            },
             icon: IconlyBold.category,
           ),
           actions: [
@@ -109,21 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                           ),
-                          GridView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: 3,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              mainAxisSpacing: 0,
-                              childAspectRatio: 0.6,
-                              crossAxisSpacing: 0,
-                            ),
-                            itemBuilder: (BuildContext context, int index) {
-                              return const ProductWidget();
-                            },
-                          ),
+                          const ProductsGrid()
                         ],
                       ),
                     ),
