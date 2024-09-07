@@ -8,6 +8,7 @@ import '../widgets/products_grid.dart';
 import '../widgets/sale_widget.dart';
 import 'categories_screen.dart';
 import 'products_screen.dart';
+import 'users_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -54,7 +55,16 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           actions: [
             CustomIcon(
-              function: () {},
+              function: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    child: const UsersScreen(),
+                    type: PageTransitionType.fade,
+                  ),
+                );
+
+              },
               icon: IconlyBold.user3,
             )
           ],
