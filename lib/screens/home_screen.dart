@@ -3,6 +3,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../services/api_handler.dart';
 import '../widgets/custom_icon.dart';
 import '../widgets/products_grid.dart';
 import '../widgets/sale_widget.dart';
@@ -30,7 +31,11 @@ class _HomeScreenState extends State<HomeScreen> {
     textEditingController.dispose;
     super.dispose();
   }
-
+  @override
+  void didChangeDependencies() {
+    ApiHandler.getAllProducts();
+    super.didChangeDependencies();
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
