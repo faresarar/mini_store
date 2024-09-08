@@ -141,11 +141,38 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                           ),
-                          productsList.isEmpty
-                              ? Container()
+                          /*   productsList.isEmpty
+                              ? const Center(child: CircularProgressIndicator(),)
                               : ProductsGrid(
                                   productsList: productsList,
-                                ),
+                                ),*/
+                          FutureBuilder<List<ProductsModel>>(
+                            future: ApiHandler.getAllProducts(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              } else if (snapshot.hasError) {
+                                Center(
+                                  child: Text(
+                                    "An error occurred ${snapshot.error}",
+                                  ),
+                                );
+                              }
+                              else if (snapshot.data ==  null ) {
+                                const Center(
+                                  child: Text(
+                                    "No products has been added yet",
+                                  ),
+                                );
+                              }
+                              return ProductsGrid(
+                                productsList: snapshot.data!,
+                              );
+                            },
+                          ),
                         ],
                       ),
                     ),

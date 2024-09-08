@@ -29,7 +29,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text("All Products")),
       body: productsList.isEmpty
-          ? Container()
+          ? const Center(child: CircularProgressIndicator(),)
           : ProductsGrid(
               productsList: productsList,
             ),
