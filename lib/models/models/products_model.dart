@@ -1,9 +1,12 @@
 /// to transform  json to dart  use : https://javiercbk.github.io/json_to_dart/
 library;
 
+
+import 'package:flutter/material.dart';
+
 import 'categories_model.dart';
 
-class ProductsModel {
+class ProductsModel  with ChangeNotifier{
   int? id;
   String? title;
   int? price;
