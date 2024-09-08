@@ -7,8 +7,8 @@ import '../constants/global_colors.dart';
 import '../screens/product_details_screen.dart';
 
 class ProductWidget extends StatelessWidget {
-  const ProductWidget({super.key});
-
+  const ProductWidget({super.key, required this.title, required this.imageUrl});
+  final String title, imageUrl;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

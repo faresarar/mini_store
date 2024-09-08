@@ -3,6 +3,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../models/models/products_model.dart';
 import '../services/api_handler.dart';
 import '../widgets/custom_icon.dart';
 import '../widgets/products_grid.dart';
@@ -20,6 +21,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late TextEditingController textEditingController;
+  List<ProductsModel> productsList = [];
   @override
   void initState() {
     textEditingController = TextEditingController();
@@ -31,11 +33,18 @@ class _HomeScreenState extends State<HomeScreen> {
     textEditingController.dispose;
     super.dispose();
   }
+
   @override
   void didChangeDependencies() {
-    ApiHandler.getAllProducts();
+    getProducts();
     super.didChangeDependencies();
   }
+
+  Future<void> getProducts() async {
+    productsList = await ApiHandler.getAllProducts();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -68,7 +77,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     type: PageTransitionType.fade,
                   ),
                 );
-
               },
               icon: IconlyBold.user3,
             )
@@ -133,7 +141,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                           ),
-                          const ProductsGrid()
+                          productsList.isEmpty
+                              ? Container()
+                              : ProductsGrid(
+                                  productsList: productsList,
+                                ),
                         ],
                       ),
                     ),
