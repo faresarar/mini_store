@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../constants/api_constants.dart';
-import '../models/models/categories_model.dart';
-import '../models/models/products_model.dart';
+import '../models/categories_model.dart';
+import '../models/products_model.dart';
 
 class ApiHandler {
   static Future<List<dynamic>> getData({required String target}) async {

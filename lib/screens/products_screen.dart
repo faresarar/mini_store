@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mini_store/widgets/products_grid.dart';
 
-import '../models/models/products_model.dart';
+import '../models/products_model.dart';
 import '../services/api_handler.dart';
 
 class ProductsScreen extends StatefulWidget {

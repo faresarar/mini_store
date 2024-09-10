@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/models/categories_model.dart';
+import '../models/categories_model.dart';
 import '../services/api_handler.dart';
 import '../widgets/categories_grid.dart';
 

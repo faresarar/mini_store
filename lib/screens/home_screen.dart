@@ -3,7 +3,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../models/models/products_model.dart';
+import '../models/products_model.dart';
 import '../services/api_handler.dart';
 import '../widgets/custom_icon.dart';
 import '../widgets/products_grid.dart';

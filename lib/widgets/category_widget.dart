@@ -2,7 +2,7 @@ import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:mini_store/constants/global_colors.dart';
-import 'package:mini_store/models/models/categories_model.dart';
+import 'package:mini_store/models/categories_model.dart';
 import 'package:provider/provider.dart';
 
 class CategoryWidget extends StatelessWidget {
