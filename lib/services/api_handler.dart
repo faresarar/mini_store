@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:mini_store/models/user_model.dart';
 
 import '../constants/api_constants.dart';
 import '../models/categories_model.dart';
@@ -29,4 +30,9 @@ class ApiHandler {
     List tempList = await getData(target: "categories");
     return CategoryModel.categoriesFromSnapshot(tempList);
   }
+  static Future<List<UserModel>> getAllUsers() async {
+    List tempList = await getData(target: "users");
+    return UserModel.categoriesFromSnapshot(tempList);
+  }
+
 }
