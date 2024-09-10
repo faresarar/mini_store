@@ -1,12 +1,11 @@
 /// to transform  json to dart  use : https://javiercbk.github.io/json_to_dart/
 library;
 
-
 import 'package:flutter/material.dart';
 
 import 'categories_model.dart';
 
-class ProductsModel  with ChangeNotifier{
+class ProductsModel with ChangeNotifier {
   int? id;
   String? title;
   int? price;
@@ -14,7 +13,7 @@ class ProductsModel  with ChangeNotifier{
   List<String>? images;
   String? creationAt;
   String? updatedAt;
-  Category? category;
+  CategoryModel? category;
 
   ProductsModel({
     this.id,
@@ -36,7 +35,7 @@ class ProductsModel  with ChangeNotifier{
     creationAt = json['creationAt'];
     updatedAt = json['updatedAt'];
     category =
-        json['category'] != null ? Category.fromJson(json['category']) : null;
+        json['category'] != null ? CategoryModel.fromJson(json['category']) : null;
   }
 
   Map<String, dynamic> toJson() {

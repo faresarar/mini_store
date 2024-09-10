@@ -141,11 +141,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                           ),
-                          /*   productsList.isEmpty
-                              ? const Center(child: CircularProgressIndicator(),)
-                              : ProductsGrid(
-                                  productsList: productsList,
-                                ),*/
                           FutureBuilder<List<ProductsModel>>(
                             future: ApiHandler.getAllProducts(),
                             builder: (context, snapshot) {

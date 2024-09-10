@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mini_store/widgets/products_grid.dart';
 
 import '../models/models/products_model.dart';
 import '../services/api_handler.dart';
-import '../widgets/products_grid.dart';
 
 class ProductsScreen extends StatefulWidget {
   const ProductsScreen({super.key});
@@ -28,11 +28,31 @@ class _ProductsScreenState extends State<ProductsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("All Products")),
-      body: productsList.isEmpty
-          ? const Center(child: CircularProgressIndicator(),)
-          : ProductsGrid(
-              productsList: productsList,
-            ),
+      body: FutureBuilder<List<ProductsModel>>(
+        future: ApiHandler.getAllProducts(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            Center(
+              child: Text(
+                "An error occurred ${snapshot.error}",
+              ),
+            );
+          } else if (snapshot.data == null) {
+            const Center(
+              child: Text(
+                "No products has been added yet",
+              ),
+            );
+          }
+          return ProductsGrid(
+            productsList: snapshot.data!,
+          );
+        },
+      ),
     );
   }
 }
