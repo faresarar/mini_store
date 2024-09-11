@@ -13,6 +13,9 @@ class ProductsScreen extends StatefulWidget {
 
 class _ProductsScreenState extends State<ProductsScreen> {
   List<ProductsModel> productsList = [];
+  int limit = 10 ;
+  bool isLoading = false ;
+  bool isLimit = false ;
   @override
   void didChangeDependencies() {
     getProducts();
@@ -20,7 +23,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
   }
 
   Future<void> getProducts() async {
-    productsList = await ApiHandler.getAllProducts();
+    productsList = await ApiHandler.getAllProducts(limit: limit.toString());
     setState(() {});
   }
 
@@ -29,7 +32,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text("All Products")),
       body: FutureBuilder<List<ProductsModel>>(
-        future: ApiHandler.getAllProducts(),
+        future: ApiHandler.getAllProducts(limit: ''),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(

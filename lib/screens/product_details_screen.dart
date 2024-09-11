@@ -19,6 +19,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   final titleStyle = const TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
   ProductsModel? productsModel;
   bool isError = false;
+  String errorString = "";
   Future<void> getProductInfo() async {
     try {
       productsModel = await ApiHandler.getProductById(id: widget.id);
@@ -43,9 +44,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ?  Center(
             child: Text(
               "An error occurred$errorString",
-              style: TextStyle(
-                fontsize: 24,
-                fontweight: fontweight.w500,
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w500,
               ),
             ),
           )

@@ -9,9 +9,22 @@ import '../models/products_model.dart';
 import '../models/user_model.dart';
 
 class ApiHandler {
-  static Future<List<dynamic>> getData({required String target}) async {
+  static Future<List<dynamic>> getData({
+    required String target,
+    String? limit,
+  }) async {
     try {
-      Uri uri = Uri.https(baseUrl, "/api/v1/$target");
+      Uri uri = Uri.https(
+        baseUrl,
+        "/api/v1/$target",
+        target == "products"
+            ? {
+                "offset": "0",
+              }
+            : {
+                "limit": limit,
+              },
+      );
       http.Response response = await http.get(uri);
       // print("response ${jsonDecode(response.body)}");
       dynamic data = jsonDecode(response.body);
@@ -30,8 +43,12 @@ class ApiHandler {
     }
   }
 
-  static Future<List<ProductsModel>> getAllProducts() async {
-    List tempList = await getData(target: "products");
+  static Future<List<ProductsModel>> getAllProducts(
+      {required String limit}) async {
+    List tempList = await getData(
+      target: "products",
+      limit: limit,
+    );
     return ProductsModel.productsFromSnapshot(tempList);
   }
 

@@ -35,17 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-  void didChangeDependencies() {
-    getProducts();
-    super.didChangeDependencies();
-  }
-
-  Future<void> getProducts() async {
-    productsList = await ApiHandler.getAllProducts();
-    setState(() {});
-  }
-
-  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
@@ -142,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           FutureBuilder<List<ProductsModel>>(
-                            future: ApiHandler.getAllProducts(),
+                            future: ApiHandler.getAllProducts(limit: '3'),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -155,8 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     "An error occurred ${snapshot.error}",
                                   ),
                                 );
-                              }
-                              else if (snapshot.data ==  null ) {
+                              } else if (snapshot.data == null) {
                                 const Center(
                                   child: Text(
                                     "No products has been added yet",
